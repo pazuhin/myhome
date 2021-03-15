@@ -15,9 +15,9 @@ class DBCriteria
     {
         if (self::$instance === null)
         {
-            require_once('../config/database.php');
+            $dbConf = require_once('../config/database.php');
             try {
-                self::$instance = new \PDO($dsn, $user, $password, [\PDO::ATTR_PERSISTENT => false]);
+                self::$instance = new \PDO($dbConf['dns'], $dbConf['user'], $dbConf['password'], [\PDO::ATTR_PERSISTENT => false]);
             } catch (\PDOException $e) {
                 echo $e->getMessage();
             }
